@@ -81,6 +81,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </NavLink>
             </>
           )}
+          <a href="/junta-te" className="nav-item flex items-center gap-2 px-3 py-2 rounded transition-all text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--gold))]">
+            <Shield size={14} />
+            Junta-te
+          </a>
         </nav>
       </header>
 
