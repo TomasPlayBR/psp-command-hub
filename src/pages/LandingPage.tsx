@@ -1,7 +1,7 @@
 import { Shield, Users, AlertTriangle, Radio, ChevronRight, ExternalLink, Megaphone, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
-import emblem from "@/assets/psp-logo.png";
+import emblem from "@/assets/psp-emblem.png";
 
 const POSTS = [
   {
@@ -249,11 +249,11 @@ export default function LandingPage() {
           </h2>
           <div className="gold-line w-12 mx-auto mb-4" />
           <p className="text-sm leading-relaxed mb-6" style={{ color: "hsl(var(--muted-foreground))" }}>
-            A PSP do Sucesso RP é uma corporação focada na garantia da ordem, segurança e justiça na cidade,
-            atuando de forma profissional e organizada dentro do roleplay.
+            A PSP do Sucesso RP é uma corporação focada na garantia da ordem, segurança e justiça na cidade, atua de forma
+            organizada dentro do roleplay.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="https://discord.gg/pspsucesso" target="_blank" rel="noopener noreferrer"
+            <a href="https://discord.gg/hEjDPYcgxV" target="_blank" rel="noopener noreferrer"
               className="btn-gold inline-flex items-center justify-center gap-2 text-xs px-6 py-2.5">
               <ExternalLink size={13} />
               Discord da PSP
