@@ -242,3 +242,24 @@
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 20px hsl(43 90% 52% / 0.15); }
+  50% { box-shadow: 0 0 40px hsl(43 90% 52% / 0.3); }
+}
+
+.landing-emblem-glow {
+  animation: pulse-gold 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.landing-emblem {
+  transition: transform 0.3s ease;
+}
+.landing-emblem:hover {
+  transform: scale(1.1);
+}

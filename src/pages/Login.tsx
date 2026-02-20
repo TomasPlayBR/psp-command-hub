@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { Shield, Lock, User, AlertCircle } from "lucide-react";
 import emblem from "@/assets/psp-emblem.png";
 
 export default function Login() {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -16,6 +18,7 @@ export default function Login() {
     setLoading(true);
     try {
       await login(username, password);
+      navigate("/hub");
     } catch {
       setError("Utilizador ou Password incorreta!");
     } finally {
