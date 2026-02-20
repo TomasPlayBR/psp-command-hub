@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
-import { isSuperior, isDiretor } from "@/lib/roles";
-import { Shield, Users, AlertTriangle, ScrollText, LogOut, Star } from "lucide-react";
+import { isSuperior } from "@/lib/roles";
+import { Shield, Users, AlertTriangle, ScrollText, LogOut, Star, Radio, Home } from "lucide-react";
 import emblem from "@/assets/psp-emblem.png";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -59,15 +59,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
 
         {/* Nav */}
-        <nav className="flex items-center gap-1 px-6 pb-0 border-t"
+        <nav className="flex items-center gap-1 px-6 pb-0 border-t overflow-x-auto"
           style={{ borderColor: "hsl(var(--border))" }}>
-          <NavLink to="/" end className={navLinkClass}>
+          <NavLink to="/" end className={({ isActive }) =>
+            `nav-item flex items-center gap-2 px-3 py-2 rounded transition-all text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--gold))]`
+          }>
+            <Home size={14} />
+            Início
+          </NavLink>
+          <NavLink to="/hub" end className={navLinkClass}>
             <Users size={14} />
             Hub
           </NavLink>
           <NavLink to="/blacklist" className={navLinkClass}>
             <AlertTriangle size={14} />
             Blacklist
+          </NavLink>
+          <NavLink to="/codigos10" className={navLinkClass}>
+            <Radio size={14} />
+            Códigos 10
           </NavLink>
           {currentUser && isSuperior(currentUser.role) && (
             <>
@@ -81,10 +91,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </NavLink>
             </>
           )}
-          <a href="/junta-te" className="nav-item flex items-center gap-2 px-3 py-2 rounded transition-all text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--gold))]">
+          <NavLink to="/junta-te" className={({ isActive }) =>
+            `nav-item flex items-center gap-2 px-3 py-2 rounded transition-all ${
+              isActive
+                ? "text-[hsl(var(--gold))] bg-[hsl(var(--gold)/0.08)]"
+                : "text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--gold))]"
+            }`
+          }>
             <Shield size={14} />
             Junta-te
-          </a>
+          </NavLink>
         </nav>
       </header>
 

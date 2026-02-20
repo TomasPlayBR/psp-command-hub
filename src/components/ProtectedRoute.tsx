@@ -22,7 +22,7 @@ export default function ProtectedRoute({ children, requireSuperior }: ProtectedR
 
   if (!currentUser) return <Navigate to="/login" replace />;
   if (requireSuperior && !isSuperior(currentUser.role)) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/hub" replace />;
   }
 
   return <>{children}</>;

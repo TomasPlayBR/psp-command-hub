@@ -7,10 +7,12 @@ import { AuthProvider, useAuth } from "@/context/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import Layout from "@/components/Layout";
 import Login from "@/pages/Login";
+import LandingPage from "@/pages/LandingPage";
 import Hub from "@/pages/Hub";
 import Blacklist from "@/pages/Blacklist";
 import BlacklistPublica from "@/pages/BlacklistPublica";
 import JuntateaNos from "@/pages/JuntateaNos";
+import Codigos10 from "@/pages/Codigos10";
 import Logs from "@/pages/Logs";
 import Superiores from "@/pages/Superiores";
 import NotFound from "./pages/NotFound";
@@ -22,31 +24,43 @@ function AppRoutes() {
 
   return (
     <Routes>
-      {/* Páginas públicas — sem login */}
+      {/* Landing page pública */}
+      <Route path="/" element={<LandingPage />} />
+
+      {/* Páginas públicas */}
       <Route path="/blacklist-pub" element={<BlacklistPublica />} />
       <Route path="/junta-te" element={<JuntateaNos />} />
-      <Route path="/login" element={currentUser ? <Navigate to="/" replace /> : <Login />} />
+      <Route path="/login" element={currentUser ? <Navigate to="/hub" replace /> : <Login />} />
 
-      {/* Redireciona raiz para hub (protegido) */}
-      <Route path="/" element={
+      {/* Hub — protegido, todos os autenticados */}
+      <Route path="/hub" element={
         <ProtectedRoute>
           <Layout><Hub /></Layout>
         </ProtectedRoute>
       } />
 
-      {/* Blacklist interna com gestão (só PSP) */}
+      {/* Blacklist interna — protegido */}
       <Route path="/blacklist" element={
         <ProtectedRoute>
           <Layout><Blacklist /></Layout>
         </ProtectedRoute>
       } />
 
+      {/* Códigos 10 — protegido, todos os autenticados */}
+      <Route path="/codigos10" element={
+        <ProtectedRoute>
+          <Layout><Codigos10 /></Layout>
+        </ProtectedRoute>
+      } />
+
+      {/* Logs — só superiores */}
       <Route path="/logs" element={
         <ProtectedRoute requireSuperior>
           <Layout><Logs /></Layout>
         </ProtectedRoute>
       } />
 
+      {/* Superiores — só superiores */}
       <Route path="/superiores" element={
         <ProtectedRoute requireSuperior>
           <Layout><Superiores /></Layout>
