@@ -1,7 +1,31 @@
-import { Shield, Users, AlertTriangle, Radio, ChevronRight, ExternalLink } from "lucide-react";
+import { Shield, Users, AlertTriangle, Radio, ChevronRight, ExternalLink, Megaphone, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
-import emblem from "@/assets/psp-emblem.png";
+import emblem from "@/assets/psp-logo.png";
+
+const POSTS = [
+  {
+    date: "20 Fev 2026",
+    title: "Recrutamento Aberto — Vaga para Agentes",
+    content: "A PSP Sucesso RP está a recrutar novos agentes! Se tens interesse em servir a cidade com profissionalismo, candidata-te através da página Junta-te a Nós.",
+    tag: "Recrutamento",
+    tagColor: "hsl(145 60% 50%)",
+  },
+  {
+    date: "18 Fev 2026",
+    title: "Atualização do Sistema de Códigos 10",
+    content: "Os códigos de comunicação rádio foram atualizados com novas categorias e um sistema de pesquisa para facilitar as operações em patrulha.",
+    tag: "Sistema",
+    tagColor: "hsl(200 80% 60%)",
+  },
+  {
+    date: "15 Fev 2026",
+    title: "Nova Política de Blacklist",
+    content: "A partir de hoje, todos os registos na blacklist serão públicos e acessíveis a qualquer cidadão. A transparência é um dos nossos pilares.",
+    tag: "Diretiva",
+    tagColor: "hsl(var(--gold))",
+  },
+];
 
 const FEATURES = [
   {
@@ -171,8 +195,52 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* About */}
+      {/* Publicações */}
       <section className="px-6 py-16">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 mb-3">
+              <Megaphone size={20} style={{ color: "hsl(var(--gold))" }} />
+              <h2 className="text-2xl font-bold uppercase tracking-widest"
+                style={{ fontFamily: "Rajdhani, sans-serif", color: "hsl(var(--gold))" }}>
+                Publicações
+              </h2>
+            </div>
+            <div className="gold-line w-16 mx-auto" />
+            <p className="text-xs mt-2" style={{ color: "hsl(var(--muted-foreground))" }}>
+              Novidades e comunicados da Direção
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {POSTS.map((post) => (
+              <article key={post.title} className="psp-card p-5 flex flex-col gap-3 hover:scale-[1.01] transition-transform duration-200"
+                style={{ borderColor: post.tagColor + "25" }}>
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded"
+                    style={{ background: post.tagColor + "15", color: post.tagColor, border: `1px solid ${post.tagColor}30` }}>
+                    {post.tag}
+                  </span>
+                  <span className="flex items-center gap-1 text-[10px]" style={{ color: "hsl(var(--muted-foreground))" }}>
+                    <Calendar size={10} />
+                    {post.date}
+                  </span>
+                </div>
+                <h3 className="text-sm font-bold leading-snug"
+                  style={{ fontFamily: "Rajdhani, sans-serif", color: "hsl(var(--foreground))" }}>
+                  {post.title}
+                </h3>
+                <p className="text-xs leading-relaxed flex-1" style={{ color: "hsl(var(--muted-foreground))" }}>
+                  {post.content}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About */}
+      <section className="px-6 py-16" style={{ background: "hsl(var(--card))" }}>
         <div className="max-w-3xl mx-auto psp-card p-8 text-center"
           style={{ borderColor: "hsl(var(--gold) / 0.2)", boxShadow: "0 0 40px hsl(var(--gold) / 0.05)" }}>
           <h2 className="text-xl font-bold uppercase tracking-widest mb-4"
@@ -182,9 +250,7 @@ export default function LandingPage() {
           <div className="gold-line w-12 mx-auto mb-4" />
           <p className="text-sm leading-relaxed mb-6" style={{ color: "hsl(var(--muted-foreground))" }}>
             A PSP do Sucesso RP é uma corporação focada na garantia da ordem, segurança e justiça na cidade,
-            atuando de forma profissional e organizada dentro do roleplay. Os agentes iniciam a sua carreira com
-            funções básicas, evoluindo progressivamente na hierarquia à medida que adquirem experiência, formação
-            e novas responsabilidades.
+            atuando de forma profissional e organizada dentro do roleplay.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a href="https://discord.gg/pspsucesso" target="_blank" rel="noopener noreferrer"
